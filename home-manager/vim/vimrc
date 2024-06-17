@@ -1,0 +1,90 @@
+if empty($MYVIMRC) | let $MYVIMRC = expand('<sfile>:p') | endif
+
+if empty($XDG_CACHE_HOME)  | let $XDG_CACHE_HOME  = $HOME."/.cache"       | endif
+if empty($XDG_CONFIG_HOME) | let $XDG_CONFIG_HOME = $HOME."/.config"      | endif
+if empty($XDG_DATA_HOME)   | let $XDG_DATA_HOME   = $HOME."/.local/share" | endif
+if empty($XDG_STATE_HOME)  | let $XDG_STATE_HOME  = $HOME."/.local/state" | endif
+
+set runtimepath^=$XDG_CONFIG_HOME/vim
+set runtimepath+=$XDG_DATA_HOME/vim
+set runtimepath+=$XDG_CONFIG_HOME/vim/after
+
+set packpath^=$XDG_DATA_HOME/vim,$XDG_CONFIG_HOME/vim
+set packpath+=$XDG_CONFIG_HOME/vim/after,$XDG_DATA_HOME/vim/after
+
+let g:netrw_home = $XDG_DATA_HOME."/vim"
+call mkdir($XDG_DATA_HOME."/vim/spell", 'p', 0700)
+
+set backupdir=$XDG_STATE_HOME/vim/backup | call mkdir(&backupdir, 'p', 0700)
+set directory=$XDG_STATE_HOME/vim/swap   | call mkdir(&directory, 'p', 0700)
+set undodir=$XDG_STATE_HOME/vim/undo     | call mkdir(&undodir,   'p', 0700)
+set viewdir=$XDG_STATE_HOME/vim/view     | call mkdir(&viewdir,   'p', 0700)
+
+if !has('nvim') " Neovim has its own special location
+  set viminfofile=$XDG_STATE_HOME/vim/viminfo
+endif
+
+let mapleader = ","
+
+imap jk <Esc>
+nnoremap 's :%s/
+nnoremap <C-n> :Ntree<CR>
+nnoremap 't :tabnew<CR>
+nnoremap <C-Bslash> :tab :terminal ++close<CR>
+
+colorscheme murphy
+
+set number
+set colorcolumn=79
+set cursorline
+set wildmenu
+set ignorecase
+
+set laststatus=2
+
+filetype on
+filetype plugin on
+filetype indent on
+
+syntax on
+
+vnoremap <C-y> :w !xclip -i -sel c<CR><CR>
+
+" Setting up fzf plugin
+nnoremap tf :FZF<CR>
+
+" Setting up snippets
+let g:UltiSnipsSnippetsDir = "~/.config/home-manager/vim/snippets"
+let g:UltiSnipsExpandTrigger = "<CR>"
+
+" Setting colorscheme
+color jellybeans
+
+" Setting latex
+let g:tex_flavor = "latex"
+let g:vimtex_view_method = 'zathura'
+nnoremap ,to :VimtexView<CR>
+nnoremap ,tc :VimtexCompile<CR>
+
+" Setting completion
+set omnifunc=syntaxcomplete#Complete
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+let g:ycm_enable_inlay_hints = 1
+let g:ycm_key_list_select_completion = ['<Tab>']
+let g:ycm_key_list_previous_completion = ['<S-Tab>']
+
+" Open lazygit
+nnoremap ,gg :terminal ++close lazygit<CR>
+
+" Commenter
+let g:NERDCreateDefaultMappings = 0
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
+let g:NERDToggleCheckAllLines = 1
+vmap <silent> ,c <plug>NERDCommenterToggle
+
+" Fzf
+nnoremap ,f :FZF<CR>

@@ -6,7 +6,7 @@ let
     dvisvgm dvipng
     lastpage enumitem
     lh cmap cyrillic cmcyr babel-russian # For cyrillic
-    anyfontsize multirow pdflscape
+    anyfontsize multirow pdflscape titlesec pst-vectorian fncychap
     wrapfig amsmath ulem hyperref capt-of
     ;
   });

@@ -82,14 +82,14 @@ static const char *reboot[] = { "reboot", NULL };
 static const char *poweroff[] = { "poweroff", NULL };
 static const char *logout[] = { "logout_system", NULL };
 
-static const char *volume_mute[] = { "/etc/nixos/dwm/scripts/change_volume", "-m", NULL };
-static const char *volume_up[] = { "/etc/nixos/dwm/scripts/change_volume", "-i", NULL };
-static const char *volume_down[] = { "/etc/nixos/dwm/scripts/change_volume", "-d", NULL };
+static const char *volume_mute[] = { "/etc/nixosscripts/change_volume", "-m", NULL };
+static const char *volume_up[] = { "/etc/nixos/scripts/change_volume", "-i", NULL };
+static const char *volume_down[] = { "/etc/nixos/scripts/change_volume", "-d", NULL };
 
-static const char *brightness_up[] = { "/etc/nixos/dwm/scripts/change_brightness", "-i", NULL };
-static const char *brightness_down[] = { "/etc/nixos/dwm/scripts/change_brightness", "-d", NULL };
+static const char *brightness_up[] = { "/etc/nixos/scripts/change_brightness", "-i", NULL };
+static const char *brightness_down[] = { "/etc/nixos/scripts/change_brightness", "-d", NULL };
 
-static const char *toggle_grey[] = {"/etc/nixos/dwm/scripts/toggle_grey", NULL};
+static const char *toggle_grey[] = {"/etc/nixos/scripts/toggle_grey", NULL};
 
 
 static const Key keys[] = {

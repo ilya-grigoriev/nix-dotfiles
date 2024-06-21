@@ -1,0 +1,13 @@
+#!/bin/sh
+
+case $1 in
+	-i)
+		amixer set Master 5%+
+		;;
+	-d)
+		amixer set Master 5%-
+		;;
+	-m)
+		amixer set Master toggle
+		;;
+esac

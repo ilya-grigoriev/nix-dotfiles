@@ -1,0 +1,17 @@
+#!/bin/sh
+monitor=$(xrandr --verbose --current | grep "eDP.\?1" | cut -d ' ' -f 1)
+
+brightness=$(xrandr --verbose --current | grep ^"$monitor" -A5 | grep "Brightness" | tr -d -c '0-9\.')
+
+case $1 in
+    -i)
+        command='perl -e "print $brightness+0.1"'
+        new_brightness=$(eval "$command")
+        ;;
+    -d)
+        command='perl -e "print $brightness-0.1"'
+        new_brightness=$(eval "$command")
+        ;;
+esac
+
+xrandr --output $monitor --brightness $new_brightness

@@ -41,16 +41,19 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.autorun = true;
+  # services.xserver.displayManager.sessionCommands = ''
+  #   curl -sk https://raw.githubusercontent.com/ilya-grigoriev/dotfiles/main/ims/wallpapers/grey.jpg | feh --bg-fill -
+  # '';
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.lightdm.background = /etc/nixos/wallpaper.png;
+  # services.xserver.displayManager.startx.enable = true;
   environment.variables = {
 	  GDK_SCALE = "1";
 #	  GDK_DPI_SCALE = "0.5";
 #	  _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
   };
-
-  services.xserver.windowManager.awesome.enable = true;
 
   services.xserver.windowManager.dwm = {
     enable = true;
@@ -58,30 +61,19 @@
       src = ./dwm; 
     };
   };
-  # nixpkgs.overlays = [
-  #   (self: super: {
-  #     dwm = super.dwm.overrideAttrs (oldAttrs: rec {
-  #       configFile = super.writeText "config.h" (builtins.readFile ./dwm/config_dwm.h);
-  #       postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${configFile} config.def.h";
-  #     });
-  #   })
-  # ];
-  #
-  # services.xserver.windowManager.dwm.enable = true;
-
-  # services.xserver.windowManager.dwm = {
-  #   enable = true;
-  #   package = pkgs.dwm.override {
-  #     conf = builtins.readFile ./dwm/config.h;
-  #   };
-  # };
-  # services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
-  #   src = /home/ilya/.config/dwm;
-  # };
 
 
   services.dwm-status.enable = true;
-  services.dwm-status.order = ["battery" "time"];
+  services.dwm-status.extraConfig = ''
+    separator = " | "
+
+    [time]
+    format = "%d.%m.%y %H:%M"
+
+    [audio]
+    template = "V: {VOL}%"
+  '';
+  services.dwm-status.order = ["audio" "battery" "time"];
   
 
   # Configure keymap in X11
@@ -109,12 +101,11 @@
      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
      packages = with pkgs; [
      vim
-     brave
+     firefox
      tree
      dmenu
      (st.overrideAttrs (oldAttrs: rec {
-			configFile = writeText "config.def.h" (builtins.readFile /home/ilya/.config/st2/config.h);
-			postPatch = "${oldAttrs.postPatch}\n cp ${configFile} config.def.h";
+			src = ./st;
 			}))
      pkgs.xorg.libX11
      pkgs.xorg.libXinerama
@@ -123,27 +114,9 @@
      flameshot
      picom
      spotify
+     armcord
      ];
    };
-
-  environment.sessionVariables = rec {
-	  XDG_CACHE_HOME  = "$HOME/.cache";
-	  XDG_CONFIG_HOME = "$HOME/.config";
-	  XDG_DATA_HOME   = "$HOME/.local/share";
-	  XDG_STATE_HOME  = "$HOME/.local/state";
-          XDG_DESKTOP_DIR = "$HOME/dsk/";
-          XDG_DOWNLOAD_DIR = "$HOME/dws/";
-          XDG_TEMPLATES_DIR ="$HOME/tpl/";
-          XDG_PUBLICSHARE_DIR = "$HOME/cmn/";
-          XDG_DOCUMENTS_DIR = "$HOME/dox/";
-          XDG_MUSIC_DIR = "$HOME/sng/";
-          XDG_PICTURES_DIR = "$HOME/ims/";
-          XDG_VIDEOS_DIR = "$HOME/vds/";
-	  XDG_BIN_HOME = "$HOME/.local/bin";
-	  PATH = [ 
-		  "${XDG_BIN_HOME}"
-	  ];
-  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -182,6 +155,7 @@
 	mpv
 	zathura
 	gimp
+        screenkey
 
 	nnn
 	lf
@@ -201,7 +175,10 @@
 	bluez
 	bluez-tools
 
-	pyenv
+        (pkgs.python3.withPackages (python-pkgs: [
+          python-pkgs.requests
+        ]))
+        python313
 	pipx
 	telegram-desktop
 	home-manager
@@ -240,6 +217,11 @@
 	  jetbrains-mono
 	  (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
+
+  environment.etc."xdg/gtk-3.0/settings.ini".text = ''
+	  [Settings]
+	  gtk-application-prefer-dark-theme=1
+		  '';
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -1,0 +1,9 @@
+is_grey=$(ps -eaf | grep "picom" | grep "window")
+killall picom
+sleep .1
+if [[ $is_grey ]];
+then
+	picom --config ~/.config/picom.conf --backend glx -b
+else
+	picom --config ~/.config/picom.conf --backend glx --window-shader-fg ~/.config/shader -b
+fi

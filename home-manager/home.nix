@@ -21,6 +21,7 @@
 		home-rebuild = "home-manager switch";
 		home-config = "cd ~/.config/home-manager && vim home.nix";
                 cls = "clear";
+                config = "cd /etc/nixos && sudo vim /etc/nixos/configuration.nix";
 	  };
           bashrcExtra = ''
             set -o noclobber
@@ -30,6 +31,9 @@
             PS1="$GREEN[\W]$RESET "
 
             shopt -s autocd
+            eval "$(fzf --bash)"
+
+            set -o vi
           '';
   };
 
@@ -93,6 +97,20 @@
     "video/*" = "mpv.desktop";
   };
 
+  xdg.userDirs.enable = true;
+  xdg.userDirs.createDirectories = true;
+  xdg.userDirs.download = "$HOME/dws";
+  xdg.userDirs.desktop = "$HOME/dsk";
+  xdg.userDirs.documents = "$HOME/dox";
+  xdg.userDirs.extraConfig = {
+          XDG_TEMPLATES_DIR ="$HOME/tpl/";
+          XDG_PUBLICSHARE_DIR = "$HOME/cmn/";
+          XDG_MUSIC_DIR = "$HOME/sng/";
+          XDG_PICTURES_DIR = "$HOME/ims/";
+          XDG_VIDEOS_DIR = "$HOME/vds/";
+          XDG_BIN_HOME = "$HOME/.local/bin";
+        };
+
   programs.lf = {
     enable = true;
     extraConfig = ''
@@ -150,5 +168,13 @@
       bind -n C-h previous-window
       bind -n C-l next-window
     '';
+  };
+
+  services.picom = {
+    enable = true;
+    fade = true;
+    fadeDelta = 3;
+    activeOpacity = 0.96;
+    shadowOpacity = 0.8;
   };
 }

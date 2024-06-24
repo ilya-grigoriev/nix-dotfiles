@@ -10,6 +10,12 @@
   home.homeDirectory = "/home/ilya";
   home.enableNixpkgsReleaseCheck = false;
 
+  nixpkgs.config.packageOverrides = pkgs: {
+    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+      inherit pkgs;
+    };
+  };
+
   home.stateVersion = "24.05";
 
   programs.home-manager.enable = true;
@@ -22,6 +28,8 @@
 		home-config = "cd ~/.config/home-manager && vim home.nix";
                 cls = "clear";
                 config = "cd /etc/nixos && sudo vim /etc/nixos/configuration.nix";
+                vim-config = "cd ~/.config/home-manager/vim && vim .";
+                lg = "lazygit";
 	  };
           bashrcExtra = ''
             set -o noclobber
@@ -85,7 +93,7 @@
 
   programs.vim = {
 	  enable = true;
-	  plugins = with pkgs.vimPlugins; [ jellybeans-vim  vimtex vim-snippets fzfWrapper ultisnips YouCompleteMe nerdcommenter ];
+	  plugins = with pkgs.vimPlugins; [ jellybeans-vim  vimtex vim-snippets fzfWrapper ultisnips nerdcommenter ];
 	  settings = { ignorecase = true; };
           extraConfig = builtins.readFile ~/.config/home-manager/vim/vimrc;
   };
@@ -176,5 +184,16 @@
     fadeDelta = 3;
     activeOpacity = 0.96;
     shadowOpacity = 0.8;
+  };
+
+  programs.firefox = {
+    enable = true;
+    profiles.ilya = {
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        vimium
+        youtube-shorts-block
+      ];
+      search.default = "DuckDuckGo";
+    };
   };
 }

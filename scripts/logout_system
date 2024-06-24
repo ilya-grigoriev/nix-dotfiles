@@ -1,3 +1,0 @@
-#!/bin/sh
-
-pkill -u $(who | awk '{print $1}' | head -n 1)

@@ -10,7 +10,7 @@
     ./hardware-configuration.nix
     ];
 
-  nix.settings.experimental-features = "nix-command";
+  nix.settings.experimental-features = [ "nix-command" ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -101,7 +101,11 @@
      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
      packages = with pkgs; [
      vim
+     
      firefox
+     librewolf
+     chromium
+
      tree
      dmenu
      (st.overrideAttrs (oldAttrs: rec {
@@ -115,8 +119,11 @@
      picom
      spotify
      armcord
-     ];
-   };
+
+     R
+     manim
+   ];
+ };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -202,6 +209,8 @@
         pkgs.cargo
 
         pywal
+        lorri
+        direnv
 	];
 
   fonts.packages = with pkgs; [

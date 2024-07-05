@@ -23,13 +23,14 @@
   programs.bash = {
 	  enable = true;
 	  shellAliases = {
-		rebuild = "sudo nixos-rebuild switch";
-		home-rebuild = "home-manager switch";
-		home-config = "cd ~/.config/home-manager && vim home.nix";
+		r = "sudo nixos-rebuild switch";
+		hr = "home-manager switch";
+		hc = "cd ~/.config/home-manager && vim home.nix";
                 cls = "clear";
-                config = "cd /etc/nixos && sudo vim /etc/nixos/configuration.nix";
-                vim-config = "cd ~/.config/home-manager/vim && vim .";
+                c = "cd /etc/nixos && sudo vim /etc/nixos/configuration.nix";
+                vc = "cd ~/.config/home-manager/vim && vim .";
                 lg = "lazygit";
+                ff = "fastfetch";
 	  };
           bashrcExtra = ''
             set -o noclobber
@@ -93,7 +94,7 @@
 
   programs.vim = {
 	  enable = true;
-	  plugins = with pkgs.vimPlugins; [ jellybeans-vim  vimtex vim-snippets fzfWrapper ultisnips nerdcommenter ];
+	  plugins = with pkgs.vimPlugins; [ jellybeans-vim  vimtex vim-snippets fzfWrapper ultisnips nerdcommenter vim-clang-format ];
 	  settings = { ignorecase = true; };
           extraConfig = builtins.readFile ~/.config/home-manager/vim/vimrc;
   };
@@ -184,6 +185,14 @@
     fadeDelta = 3;
     activeOpacity = 0.96;
     shadowOpacity = 0.8;
+    # settings = {
+    #   blur =
+    #     { method = "gaussian";
+    #     size = 10;
+    #     deviation = 5.0;
+    #     };
+    #
+    # };
   };
 
   programs.firefox = {
@@ -195,5 +204,22 @@
       ];
       search.default = "DuckDuckGo";
     };
+  };
+
+  programs.fastfetch = {
+    enable = true;
+    settings = {
+      logo = {
+        source = "nixos_small";
+      };
+      modules = [
+        "os"
+        "wm"
+        "terminal"
+        "disk"
+        "cpuusage"
+        "colors"
+        ];
+      };
   };
 }

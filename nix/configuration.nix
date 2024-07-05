@@ -102,7 +102,7 @@
      packages = with pkgs; [
      vim
      
-     firefox
+     # firefox
      librewolf
      chromium
 
@@ -115,6 +115,8 @@
      pkgs.xorg.libXinerama
      pkgs.xorg.libXft
      gcc
+     gdb
+     clang-tools
      flameshot
      picom
      spotify
@@ -128,7 +130,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-   	vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+   	vim 
+        ctags
    	wget
 	zip
    	tmux
@@ -211,6 +214,9 @@
         pywal
         lorri
         direnv
+
+        libreoffice-qt6-still
+        # wordgrinder
 	];
 
   fonts.packages = with pkgs; [

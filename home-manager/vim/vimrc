@@ -5,6 +5,10 @@ nnoremap 's :%s/
 nnoremap <C-n> :Ntree<CR>
 nnoremap 't :tabnew<CR>
 nnoremap <C-Bslash> :tab :terminal ++close<CR>
+nnoremap ,s :%s/
+
+nnoremap <C-j> :move +1<CR>
+nnoremap <C-k> :move -2<CR>
 
 colorscheme murphy
 
@@ -41,6 +45,7 @@ let g:tex_flavor = "latex"
 let g:vimtex_view_method = 'zathura'
 nnoremap ,to :VimtexView<CR>
 nnoremap ,tc :VimtexCompile<CR>
+nnoremap ,tf :!latexindent -w %<CR>
 
 " Setting completion
 " set omnifunc=syntaxcomplete#Complete
@@ -71,3 +76,5 @@ nnoremap ,pm :terminal ++close manim -pql %<CR>
 " C
 nnoremap ,c :!cc %<CR>
 nnoremap ,r :!./a.out<CR>
+nnoremap ,m :ClangFormat<CR>
+nnoremap ,d :belowright split \| term ++curwin cc -g % && gdb a.out<CR>

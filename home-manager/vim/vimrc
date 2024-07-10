@@ -7,10 +7,17 @@ nnoremap 't :tabnew<CR>
 nnoremap <C-Bslash> :tab :terminal ++close<CR>
 nnoremap ,s :%s/
 
+nnoremap gb <C-^>
+
 nnoremap <C-j> :move +1<CR>
 nnoremap <C-k> :move -2<CR>
 
+nnoremap "t :!ctags -R .<CR>
+
 colorscheme murphy
+
+set path+=/nix/store/*glibc*dev/include/
+set path+=/nix/store/*gcc*/lib/gcc/x86_64-unknown-linux-gnu/*/include/
 
 set number
 set colorcolumn=79

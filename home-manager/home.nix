@@ -9,6 +9,9 @@
   home.username = "ilya";
   home.homeDirectory = "/home/ilya";
   home.enableNixpkgsReleaseCheck = false;
+  home.sessionVariables = {
+    EDITOR = "vim";
+  };
 
   nixpkgs.config.packageOverrides = pkgs: {
     nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
@@ -27,10 +30,14 @@
 		hr = "home-manager switch";
 		hc = "cd ~/.config/home-manager && vim home.nix";
                 cls = "clear";
-                c = "cd /etc/nixos && sudo vim /etc/nixos/configuration.nix";
+                c = "cd /etc/nixos && sudo vim .";
                 vc = "cd ~/.config/home-manager/vim && vim .";
                 lg = "lazygit";
                 ff = "fastfetch";
+                sc = "sc-im";
+                pir = "systemctl --user restart picom.service";
+                nb = "newsboat";
+                v = "vim";
 	  };
           bashrcExtra = ''
             set -o noclobber
@@ -43,6 +50,9 @@
             eval "$(fzf --bash)"
 
             set -o vi
+
+            # (cat ~/.cache/wal/sequences)
+            # source ~/.cache/wal/colors-tty.sh
           '';
   };
 
@@ -56,13 +66,14 @@
     map u scroll half-up
     map d scroll half-down
 
-    set default-bg                  "#040D12"
-    set recolor-lightcolor          "#040D12"
+    # set default-bg                  "#040D12"
+    # set recolor-lightcolor          "#040D12"
+    set default-bg rgba(0,0,0,0.7)
+    set recolor-lightcolor rgba(0,0,0,0)
   '';
 
   programs.neovim = {
     enable = true;
-    defaultEditor = true;
     plugins = [
       pkgs.vimPlugins.lazy-nvim
       # pkgs.vimPlugins.telescope-nvim
@@ -94,39 +105,79 @@
 
   programs.vim = {
 	  enable = true;
+          defaultEditor = true;
 	  plugins = with pkgs.vimPlugins; [ jellybeans-vim  vimtex vim-snippets fzfWrapper ultisnips nerdcommenter vim-clang-format ];
 	  settings = { ignorecase = true; };
           extraConfig = builtins.readFile ~/.config/home-manager/vim/vimrc;
   };
 
-  xdg.mimeApps.defaultApplications = {
-    "text/plain" = "neovim.desktop";
-    "application/pdf" = "zathura.desktop";
-    "image/*" = "nsxiv.desktop";
-    "video/*" = "mpv.desktop";
+  xdg.systemDirs.data = [ "${config.home.homeDirectory}/.nix-profile/share/applications" ];
+  xdg.desktopEntries = {
+    nsxiv = {
+      name = "nsxiv";
+      exec = "nsxiv -a %f";
+    };
+  };
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/plain" = "vim.desktop";
+      "application/pdf" = "zathura.desktop";
+
+      "image/jpeg" = "nsxiv.desktop";
+      "image/png" = "nsxiv.desktop";
+      "image/webp" = "nsxiv.desktop";
+      "image/gif" = "nsxiv.desktop";
+
+      "video/*" = "mpv.desktop";
+    };
   };
 
-  xdg.userDirs.enable = true;
-  xdg.userDirs.createDirectories = true;
-  xdg.userDirs.download = "$HOME/dws";
-  xdg.userDirs.desktop = "$HOME/dsk";
-  xdg.userDirs.documents = "$HOME/dox";
-  xdg.userDirs.extraConfig = {
-          XDG_TEMPLATES_DIR ="$HOME/tpl/";
-          XDG_PUBLICSHARE_DIR = "$HOME/cmn/";
-          XDG_MUSIC_DIR = "$HOME/sng/";
-          XDG_PICTURES_DIR = "$HOME/ims/";
-          XDG_VIDEOS_DIR = "$HOME/vds/";
-          XDG_BIN_HOME = "$HOME/.local/bin";
-        };
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+    download = "$HOME/dws";
+    desktop = "$HOME/dsk";
+    documents = "$HOME/dox";
+    extraConfig = {
+      XDG_TEMPLATES_DIR ="$HOME/tpl/";
+      XDG_PUBLICSHARE_DIR = "$HOME/cmn/";
+      XDG_MUSIC_DIR = "$HOME/sng/";
+      XDG_PICTURES_DIR = "$HOME/ims/";
+      XDG_VIDEOS_DIR = "$HOME/vds/";
+      XDG_BIN_HOME = "$HOME/.local/bin";
+    };
+  };
 
   programs.lf = {
     enable = true;
     extraConfig = ''
       map x delete
-
-      set hidden true
+      map ,
+      map ,w $wal -i "$f"
+      map ,f $feh --bg-fill "$f"
     '';
+    settings = {
+      preview = true;
+      hidden = true;
+      ignorecase = true;
+      drawbox = true;
+    };
+    previewer = {
+      keybinding = "i";
+      source = pkgs.writeShellScript "pv.sh" ''
+                 #!/bin/sh
+
+                 case "$1" in
+                     *.tar*) tar tf "$1";;
+                     *.zip) unzip -l "$1";;
+                     *.rar) unrar l "$1";;
+                     *.7z) 7z l "$1";;
+                     *.pdf) pdftotext "$1" -;;
+                     *) highlight -O ansi "$1" || cat "$1";;
+                 esac
+      '';
+    };
   };
 
   programs.tmux = {
@@ -185,14 +236,18 @@
     fadeDelta = 3;
     activeOpacity = 0.96;
     shadowOpacity = 0.8;
-    # settings = {
-    #   blur =
-    #     { method = "gaussian";
-    #     size = 10;
-    #     deviation = 5.0;
-    #     };
-    #
-    # };
+    backend = "glx";
+    settings = {
+      blur = {
+        method = "gaussian";
+        size = 20;
+        deviation = 6.0;
+      };
+    };
+    opacityRules = [
+      "100:class_g *= 'st' && !focused"
+      "100:class_g *= 'st' && focused"
+    ];
   };
 
   programs.firefox = {
@@ -221,5 +276,60 @@
         "colors"
         ];
       };
+  };
+
+  programs.newsboat = {
+    enable = true;
+    autoReload = true;
+    urls = [
+      {
+        tags = [ "arch" ];
+        url = "https://archlinux.org/feeds/news/";
+      }
+      {
+        tags = [ "blog" ];
+        url = "https://lukesmith.xyz/index.xml";
+      }
+      {
+        tags = [ "nix" ];
+        url = "https://nixos.org/blog/announcements-rss.xml";
+      }
+      {
+        tags = [ "arch" ];
+        url = "https://archlinux.org/feeds/packages/";
+      }
+      {
+        tags = [ "reddit" "linux" ];
+        url = "https://www.reddit.com/r/linux/.rss";
+      }
+      {
+        tags = [ "reddit" "linux" ];
+        url = "https://www.reddit.com/r/linuxquestions/.rss";
+      }
+      {
+        tags = [ "reddit" "latex" ];
+        url = "https://www.reddit.com/r/latex/.rss";
+      }
+    ];
+    extraConfig = ''
+      unbind-key ENTER
+      unbind-key j
+      unbind-key k
+      unbind-key J
+      unbind-key K
+
+      bind-key j down
+      bind-key k up
+      bind-key l open
+      bind-key h quit
+
+      unbind-key Q
+      unbind-key q
+      bind-key q hard-quit
+
+      browser surf
+
+      macro v set browser "mpv --really-quiet --no-terminal" ; open-in-browser ; set browser chromium
+    '';
   };
 }

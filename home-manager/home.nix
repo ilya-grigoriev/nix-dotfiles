@@ -243,6 +243,7 @@
         size = 20;
         deviation = 6.0;
       };
+      unredir-if-possible = false;
     };
     opacityRules = [
       "100:class_g *= 'st' && !focused"

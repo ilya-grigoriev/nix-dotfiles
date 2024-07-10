@@ -28,13 +28,41 @@ snippet img "Create image"
 endsnippet
 
 snippet vrule "Create rule with margin"
-
-\vspace{0.5cm}
-\hrule
-\vspace{0.5cm}
-
+\vspace{0.1cm}
+\begin{center}
+	\rule{7cm}{0.5mm}
+\end{center}
+\vspace{0.1cm}
 endsnippet
 
 snippet ve "Create verb inline"
 \verb|${1}|
+endsnippet
+
+snippet defin "Create definition for something"
+\vspace{0.5cm}
+\rule{3cm}{0.7mm}
+
+\textit{${1}} -- ${2}
+
+\hspace{14.75cm}\rule{2cm}{0.7mm}\rule{0.1cm}{0.8cm}
+\vspace{0.25cm}
+endsnippet
+
+snippet lstl "Create listing"
+\begin{lstlisting}
+${1}
+\end{lstlisting}
+endsnippet 
+
+snippet note "Create note"
+\begin{center}
+	\doublebox{
+		\begin{minipage}{10cm}
+			\begin{center}
+				${1}
+			\end{center}
+		\end{minipage}
+	}
+\end{center}
 endsnippet

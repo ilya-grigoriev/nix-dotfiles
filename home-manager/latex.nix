@@ -7,7 +7,7 @@ let
     lastpage enumitem
     lh cmap cyrillic cmcyr babel-russian # For cyrillic
     anyfontsize multirow pdflscape titlesec pst-vectorian fncychap minted
-    wrapfig amsmath ulem hyperref capt-of blindtext vmargin upquote
+    wrapfig amsmath ulem hyperref capt-of blindtext vmargin upquote listingsutf8 fancybox
     libertinus droid
     ;
   });

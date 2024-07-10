@@ -102,7 +102,6 @@
      packages = with pkgs; [
      vim
      
-     # firefox
      librewolf
      chromium
 
@@ -124,6 +123,8 @@
 
      R
      manim
+     newsboat
+     links2
    ];
  };
 
@@ -131,7 +132,12 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
    	vim 
+        poppler_utils
+        imagemagick
         ctags
+        ffmpeg
+        sbcl
+        sc-im
    	wget
 	zip
    	tmux
@@ -150,6 +156,8 @@
 	ripgrep
 	lua
 	man 
+        glib
+        glib-networking
 	usbutils
 	entr
 	pandoc 
@@ -216,7 +224,9 @@
         direnv
 
         libreoffice-qt6-still
-        # wordgrinder
+        (import ./surf.nix)
+
+        perl538Packages.FileMimeInfo
 	];
 
   fonts.packages = with pkgs; [

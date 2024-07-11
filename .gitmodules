@@ -1,6 +1,0 @@
-[submodule "nix/dwm"]
-	path = nix/dwm
-	url = https://github.com/ilya-grigoriev/dwm
-[submodule "nix/st"]
-	path = nix/st
-	url = https://github.com/ilya-grigoriev/st

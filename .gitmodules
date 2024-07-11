@@ -1,0 +1,9 @@
+[submodule "nix/modules/dwm"]
+	path = nix/modules/dwm
+	url = https://github.com/ilya-grigoriev/dwm
+[submodule "nix/modules/st"]
+	path = nix/modules/st
+	url = https://github.com/ilya-grigoriev/st
+[submodule "nix/modules/surf"]
+	path = nix/modules/surf
+	url = https://github.com/ilya-grigoriev/surf

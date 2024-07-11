@@ -1,9 +1,0 @@
-[submodule "modules/dwm"]
-	path = modules/dwm
-	url = https://github.com/ilya-grigoriev/dwm
-[submodule "modules/st"]
-	path = modules/st
-	url = https://github.com/ilya-grigoriev/st
-[submodule "modules/surf"]
-	path = modules/surf
-	url = https://github.com/ilya-grigoriev/surf

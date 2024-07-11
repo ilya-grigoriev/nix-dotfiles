@@ -1,9 +1,0 @@
-is_grey=$(ps -eaf | grep "picom" | grep "window")
-killall picom
-sleep .1
-if [[ $is_grey ]];
-then
-	picom --backend glx -b
-else
-	picom --backend glx --window-shader-fg /etc/nixos/dwm/scripts/grey-shader -b
-fi

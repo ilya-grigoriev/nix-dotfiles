@@ -106,12 +106,6 @@
      chromium
      qutebrowser
 
-     faac
-     faad2
-     gst_all_1.gst-plugins-good
-     gst_all_1.gst-libav
-     vimb
-
      tree
      dmenu
      (st.overrideAttrs (oldAttrs: rec {

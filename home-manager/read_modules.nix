@@ -1,0 +1,20 @@
+{
+  imports = [
+    ./modules/bash.nix
+    ./modules/fastfetch.nix
+    ./modules/firefox.nix
+    ./modules/home_setup.nix
+    ./modules/latex.nix
+    ./modules/lf.nix
+    ./modules/newsboat.nix
+    ./modules/nvim.nix
+    ./modules/picom.nix
+    ./modules/qutebrowser.nix
+    ./modules/tmux.nix
+    ./modules/vim.nix
+    ./modules/xdg.nix
+    ./modules/yt-dlp.nix
+    ./modules/zathura.nix
+    ./modules/zoxide.nix
+  ];
+}

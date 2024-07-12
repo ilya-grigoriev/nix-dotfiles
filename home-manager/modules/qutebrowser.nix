@@ -21,6 +21,7 @@
 
       colors.webpage.darkmode.enabled = true;
       colors.webpage.darkmode.policy.images = "never";
+      colors.webpage.bg = "black";
 
       colors.tabs.bar.bg = "black";
       colors.tabs.odd.fg = "#CCCCCC"; # "#A9A9A9"
@@ -33,8 +34,12 @@
       colors.tabs.selected.even.bg = "#3C3C3C";
 
       fonts.default_size = "13pt";
+      fonts.default_family = "Monocraft Nerd Font";
+      fonts.tabs.selected = "12pt Monocraft";
+      fonts.tabs.unselected = "12pt Monocraft";
+
       statusbar.widgets = [ "url" ];
-      tabs.max_width = 300;
+      tabs.max_width = 350;
       tabs.title.format = "{current_title}";
 
       zoom.default = "150%";

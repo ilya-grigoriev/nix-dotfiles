@@ -1,6 +1,7 @@
 {
   imports = [
     ./modules/bash.nix
+    ./modules/discordo.nix
     ./modules/fastfetch.nix
     ./modules/firefox.nix
     ./modules/home_setup.nix

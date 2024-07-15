@@ -10,6 +10,7 @@
     ./modules/nvim.nix
     ./modules/picom.nix
     ./modules/qutebrowser.nix
+    ./modules/tg.nix
     ./modules/tmux.nix
     ./modules/vim.nix
     ./modules/xdg.nix

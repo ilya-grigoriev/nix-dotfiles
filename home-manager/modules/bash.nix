@@ -7,7 +7,7 @@
       hc = "cd ~/.config/home-manager && vim .";
       cls = "clear";
       c = "cd /etc/nixos && sudo vim .";
-      vc = "cd ~/.config/home-manager/vim && vim .";
+      vc = "cd ~/.config/home-manager/modules/vim/ && vim .";
       lg = "lazygit";
       ff = "fastfetch";
       sc = "sc-im";
@@ -18,8 +18,8 @@
       b = "bluetuith";
       autoh = "echo ~/.config/home-manager/home.nix | entr sh -c 'home-manager switch'";
       auto = "echo /etc/nixos/configuration.nix | entr sh -c 'sudot nixos-rebuild switch'";
-      };
-      bashrcExtra = ''
+    };
+    bashrcExtra = ''
       set -o noclobber
 
       GREEN="\[$(tput setaf 2)\]"
@@ -33,6 +33,6 @@
 
             # (cat ~/.cache/wal/sequences)
             # source ~/.cache/wal/colors-tty.sh
-            '';
-            };
-            }
+    '';
+  };
+}

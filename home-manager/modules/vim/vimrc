@@ -35,11 +35,8 @@ syntax on
 
 vnoremap <C-y> :w !xclip -i -sel c<CR><CR>
 
-" Setting up fzf plugin
-nnoremap tf :FZF<CR>
-
 " Setting up snippets
-let g:UltiSnipsSnippetDirectories	= ["~/.config/home-manager/vim/snippets"]
+let g:UltiSnipsSnippetDirectories	= ["~/.config/home-manager/modules/vim/snippets"]
 let g:UltiSnipsExpandTrigger 		= "<CR>"
 let g:UltiSnipsJumpForwardTrigger  	= "<C-l>"
 let g:UltiSnipsJumpBackwardTrigger 	= "<C-b>"

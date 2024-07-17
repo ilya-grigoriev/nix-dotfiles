@@ -25,6 +25,7 @@
     perl538Packages.FileMimeInfo
     gh
     tree
+    apg
 
     groff
     pandoc

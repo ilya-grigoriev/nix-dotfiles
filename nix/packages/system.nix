@@ -7,8 +7,12 @@
 
     glib
     glib-networking
+    sysstat
 
     xsel
     xclip
+
+    android-tools
+    android-file-transfer
   ];
 }

@@ -15,5 +15,8 @@
     imagemagick
     lolcat
     fastfetch
+    figlet
+    cbonsai
+    pipes
   ];
 }

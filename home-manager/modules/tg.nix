@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
   home.packages = [ pkgs.tg ];  
   xdg.configFile."tg/conf.py".text = ''

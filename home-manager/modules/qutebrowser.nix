@@ -7,6 +7,8 @@
       y = "https://youtube.com/";
       mg = "https://github.com/ilya-grigoriev";
       t = "https://translate.yandex.com/";
+      d = "https://detexify.kirelabs.org/classify.html";
+      l = "https://ctan.org/";
     };
     keyBindings = {
       normal = {

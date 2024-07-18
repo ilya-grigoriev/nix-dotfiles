@@ -12,6 +12,7 @@
 			dina-font
 			proggyfonts
 			jetbrains-mono
+            monocraft
 			(nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
 	];
 }

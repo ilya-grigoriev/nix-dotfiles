@@ -66,3 +66,33 @@ snippet note "Create note"
 	}
 \end{center}
 endsnippet
+
+snippet tcol "Create tcolorbox"
+\begin{center}
+\begin{tcolorbox}[colback=red!10!white,width=16cm]
+${1}
+\end{tcolorbox}
+\end{center}
+endsnippet
+
+snippet ccb "Create some columns of code blocks"
+\begin{center}
+\begin{minipage}{0.5\linewidth}
+\begin{lstlisting}[linewidth=5cm]
+${1}
+\end{lstlisting}
+\end{minipage}
+\hspace{1cm}
+\begin{minipage}{0.5\linewdith}
+\begin{lstlisting}[linewidth=5cm]
+${2}
+\end{lstlisting}
+\end{minipage}
+\end{center}
+endsnippet
+
+snippet note2 "Create note"
+\begin{tcolorbox}[boxrule=0pt,leftrule=2pt,arc=0pt]
+${1}
+\end{tcolorbox}
+endsnippet

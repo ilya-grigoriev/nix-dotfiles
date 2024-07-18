@@ -25,6 +25,9 @@ set cursorline
 set wildmenu
 set ignorecase
 
+set shiftwidth=4
+set tabstop=4
+
 set laststatus=2
 
 filetype on
@@ -81,4 +84,9 @@ nnoremap ,pm :terminal ++close manim -pql %<CR>
 nnoremap ,c :!cc %<CR>
 nnoremap ,r :!./a.out<CR>
 nnoremap ,m :ClangFormat<CR>
-nnoremap ,d :belowright split \| term ++curwin cc -g % && gdb a.out<CR>
+
+function DebugC()
+	:!cc -g % 
+	:!gdb --tui a.out
+endfunction
+nnoremap ,d :call DebugC()<CR>

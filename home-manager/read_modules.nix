@@ -13,6 +13,7 @@
     ./modules/qutebrowser.nix
     ./modules/tg.nix
     ./modules/tmux.nix
+    ./modules/tuir.nix
     ./modules/vim.nix
     ./modules/xdg.nix
     ./modules/yt-dlp.nix

@@ -9,6 +9,7 @@
       t = "https://translate.yandex.com/";
       d = "https://detexify.kirelabs.org/classify.html";
       l = "https://ctan.org/";
+      c = "https://en.cppreference.com/w/";
     };
     keyBindings = {
       normal = {

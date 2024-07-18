@@ -14,10 +14,12 @@
       pir = "systemctl --user restart picom.service";
       nb = "newsboat";
       v = "vim";
+      nv = "nvim";
       s = "nix-shell -p";
       b = "bluetuith";
       autoh = "echo ~/.config/home-manager/home.nix | entr sh -c 'home-manager switch'";
       auto = "echo /etc/nixos/configuration.nix | entr sh -c 'sudot nixos-rebuild switch'";
+      rd = "tuir";
     };
     bashrcExtra = ''
       set -o noclobber

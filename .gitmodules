@@ -7,3 +7,6 @@
 [submodule "nix/modules/dwm"]
 	path = nix/modules/dwm
 	url = https://github.com/ilya-grigoriev/dwm
+[submodule "home-manager/modules/vim"]
+	path = home-manager/modules/vim
+	url = https://github.com/ilya-grigoriev/vim

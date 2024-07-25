@@ -20,6 +20,7 @@
       autoh = "echo ~/.config/home-manager/home.nix | entr sh -c 'home-manager switch'";
       auto = "echo /etc/nixos/configuration.nix | entr sh -c 'sudot nixos-rebuild switch'";
       rd = "tuir";
+      br = "xrandr --output eDP-1 --brightness";
     };
     bashrcExtra = ''
       set -o noclobber

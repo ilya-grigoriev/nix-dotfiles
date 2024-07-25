@@ -24,6 +24,9 @@
     opacityRules = [
       "100:class_g *= 'st' && !focused"
       "100:class_g *= 'st' && focused"
+
+      "93:class_g *= 'qutebrowser' && !focused"
+      "93:class_g *= 'qutebrowser' && focused"
     ];
   };
 }

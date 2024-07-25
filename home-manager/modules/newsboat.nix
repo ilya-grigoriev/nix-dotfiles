@@ -20,16 +20,8 @@
         url = "https://archlinux.org/feeds/packages/";
       }
       {
-        tags = [ "reddit" "linux" ];
-        url = "https://www.reddit.com/r/linux/.rss";
-      }
-      {
-        tags = [ "reddit" "linux" ];
-        url = "https://www.reddit.com/r/linuxquestions/.rss";
-      }
-      {
-        tags = [ "reddit" "latex" ];
-        url = "https://www.reddit.com/r/latex/.rss";
+        tags = [ "latex"];
+        url = "https://tex.stackexchange.com/feeds";
       }
     ];
     extraConfig = ''

@@ -8,6 +8,7 @@
       map ,
       map ,w $wal -i "$f"
       map ,f $feh --bg-fill "$f"
+      map ,rw $feh --bg-fill /etc/nixos/wallpaper.png
     '';
     settings = {
       preview = true;

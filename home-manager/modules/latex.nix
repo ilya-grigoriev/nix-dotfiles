@@ -4,7 +4,7 @@ let
     inherit (pkgs.texlive)
     scheme-medium
     dvisvgm dvipng
-    lastpage enumitem
+    lastpage enumitem hyphenat
     lh cmap cyrillic cmcyr babel-russian hyphen-russian # For cyrillic
     anyfontsize multirow pdflscape titlesec pst-vectorian fncychap minted
     wrapfig amsmath ulem hyperref capt-of blindtext vmargin upquote listingsutf8 fancybox 

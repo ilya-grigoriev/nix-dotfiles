@@ -23,6 +23,10 @@
         tags = [ "latex"];
         url = "https://tex.stackexchange.com/feeds";
       }
+      {
+        tags = [ "android"];
+        url = "https://lineageos.org/feed.xml";
+      }
     ];
     extraConfig = ''
       unbind-key ENTER

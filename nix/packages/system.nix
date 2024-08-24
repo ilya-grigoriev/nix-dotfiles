@@ -14,5 +14,7 @@
 
     android-tools
     android-file-transfer
+
+    lsof
   ];
 }

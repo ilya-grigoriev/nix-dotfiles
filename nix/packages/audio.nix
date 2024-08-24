@@ -5,5 +5,6 @@
     ffmpeg
     yt-dlp
     mpd
+    sof-firmware
   ];
 }

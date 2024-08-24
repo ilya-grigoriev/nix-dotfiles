@@ -15,6 +15,9 @@
     android-tools
     android-file-transfer
 
+    gnupg
+    pinentry-all
+
     lsof
   ];
 }

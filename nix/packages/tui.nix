@@ -14,6 +14,8 @@
     htop
     pulsemixer
     sc-im
+    tomato-c
+    peaclock
   ];
 }
 

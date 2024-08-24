@@ -8,6 +8,7 @@
       clang-tools
 
       R
+      go
     ];
   };
 

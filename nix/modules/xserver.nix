@@ -22,5 +22,8 @@
 
 	services.xserver.xkb.layout = "us,ru";
 	services.xserver.xkb.options = "grp:alt_shift_toggle,caps:ctrl_modifier";
-
+    console = {
+      enable = true;
+      useXkbConfig = true;
+    };
 }
